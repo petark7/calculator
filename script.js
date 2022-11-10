@@ -1,3 +1,19 @@
+    let display = document.querySelector('.display h2');
+    let buttons = document.querySelectorAll('button');
+
+    for (let x = 0; x < buttons.length; x++) {
+        buttons[x].addEventListener('click', () => {
+            if (display.textContent == 0) {
+                display.textContent = "";
+            }
+            display.textContent += buttons[x].textContent;
+        });
+    }
+
+function buttonClick (content) {
+    display.textContent += content;
+}
+
 function add (x, y) {
     return x + y;
 }
