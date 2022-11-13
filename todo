@@ -4,7 +4,7 @@
 
 // Pressing = causes problems
 
-// Add error if tried to divide by 2
+// Add error if tried to divide by 0
 
 
 OPTIONAL

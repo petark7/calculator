@@ -2,8 +2,9 @@
     let buttons = document.querySelectorAll('button');
     let clearDisplay = true;
 
+    let equalsDisabled = false;
     let currentNumber = "";
-    let currentOperand = "";
+    let previousOperation = "";
     let numbersArray = [];
 
     // populate display on button click
@@ -31,28 +32,50 @@
         });
     }
 
-function calculate (operand) {
+function calculate (operator) {
 
     // =
-    if (operand == "=") {
+    if (operator == "=" && numbersArray.length == 2) {
         numbersArray.push(parseInt(currentNumber));
+        if (numbersArray[1] == "/" && numbersArray[2] == 0) {
+            numbersArray = [];
+            currentNumber = 0;
+            display.textContent = "bro..";
+            return;
+        }
         let result = operate(numbersArray[0], numbersArray[2], numbersArray[1]);
         display.textContent = result;
         numbersArray = [result];
         currentNumber = result;
     }
 
-    // operands + - * /
-    else {
-        // executes after the display is cleared (or the first time)
+    // operators + - * /
+    else if (operator == "+" || operator == "-" || operator == "*" || operator == "/"){
+        // check if the second operand is 0 
+       if (currentNumber == 0 && operator == "/" && numbersArray.length == 2) {
+        numbersArray = [];
+        currentNumber = 0;
+        display.textContent = "bro..";
+       }
+       else {
+         // executes after the display is cleared (or the first time)
         if (!numbersArray.length) {
-            numbersArray.push(parseInt(currentNumber), operand);
+            numbersArray.push(parseInt(currentNumber), operator);
         }
-        
-        // the result of previous operation
+
         else if (numbersArray.length == 1) {
-            numbersArray.push(operand);
+            numbersArray.push(operator);
         }
+
+        // second time calling the operator button
+        // add first two numbers and store operator ==> [5 + 3 +] => [8, +]
+        else if (numbersArray.length == 2) {
+            numbersArray.push(parseInt(currentNumber));
+            let result = operate(numbersArray[0], numbersArray[2], numbersArray[1]);
+            numbersArray = [result, operator];
+            display.textContent = result;
+        }
+       }
     }
     clearDisplay = true;
 }
