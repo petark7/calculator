@@ -19,6 +19,11 @@
                         currentNumber = "";
                         display.textContent = "";
                     }
+                    
+                    if (currentNumber != numbersArray[0] && numbersArray.length == 1)
+                    {
+                        numbersArray = [];
+                    }
                     currentNumber += buttons[x].textContent;
                     display.textContent += buttons[x].textContent;     
                     clearDisplay = false;  
@@ -27,24 +32,37 @@
     }
 
 function calculate (operand) {
-    console.log(numbersArray);
+
+    // =
     if (operand == "=") {
         numbersArray.push(parseInt(currentNumber));
         let result = operate(numbersArray[0], numbersArray[2], numbersArray[1]);
         display.textContent = result;
-        numbersArray = [];
+        numbersArray = [result];
+        currentNumber = result;
     }
 
     // operands + - * /
     else {
         // executes after the display is cleared (or the first time)
         if (!numbersArray.length) {
-            numbersArray.push(parseInt(currentNumber));
-            numbersArray.push(operand); 
+            numbersArray.push(parseInt(currentNumber), operand);
+        }
+        
+        // the result of previous operation
+        else if (numbersArray.length == 1) {
+            numbersArray.push(operand);
         }
     }
     clearDisplay = true;
 }
+
+function reset () {
+    numbersArray = [];
+    currentNumber = 0;
+    display.textContent = 0;
+}
+
 
 function add (x, y) {
     return x + y;

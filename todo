@@ -1,0 +1,18 @@
+// Enable operating with multiple operations; 12 + 7 - 5 * 3 = 42
+
+// Round answers with long decimals
+
+// Pressing = causes problems
+
+// Add error if tried to divide by 2
+
+
+OPTIONAL
+
+// Add . button. (don't allow more than one; disable decimal button)
+
+// Improve UI w CSS
+
+// Add backspace button
+
+//Add keyboard support
