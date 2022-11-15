@@ -52,7 +52,7 @@ function calculate (operator) {
     // operators + - * /
     else if (operator == "+" || operator == "-" || operator == "*" || operator == "/"){
         // check if the second operand is 0 
-       if (currentNumber == 0 && operator == "/" && numbersArray.length == 2) {
+       if (currentNumber == 0 && operator == "/" && numbersArray.length == 2 && currentNumber != 0) {
         numbersArray = [];
         currentNumber = 0;
         display.textContent = "bro..";
