@@ -61,19 +61,25 @@ function calculate (operator) {
          // executes after the display is cleared (or the first time)
         if (!numbersArray.length) {
             numbersArray.push(parseInt(currentNumber), operator);
+            currentNumber = 0;
         }
 
         else if (numbersArray.length == 1) {
-            numbersArray.push(operator);
+            numbersArray[1] = operator;
+            currentNumber = 0;
         }
 
         // second time calling the operator button
         // add first two numbers and store operator ==> [5 + 3 +] => [8, +]
         else if (numbersArray.length == 2) {
-            numbersArray.push(parseInt(currentNumber));
-            let result = operate(numbersArray[0], numbersArray[2], numbersArray[1]);
+            console.log (numbersArray); 
+            if (currentNumber != 0) {
+                numbersArray.push(parseInt(currentNumber));
+                let result = operate(numbersArray[0], numbersArray[2], numbersArray[1]);
             numbersArray = [result, operator];
             display.textContent = result;
+            }
+            currentNumber = 0;
         }
        }
     }
