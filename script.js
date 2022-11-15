@@ -92,6 +92,34 @@ function reset () {
     display.textContent = 0;
 }
 
+// enable keyboard support 
+// add animation on buttons after clicking on keys
+window.addEventListener("keydown", (event) => {
+    let button = document.getElementById("btn_" + event.key);;
+    try {
+        switch (event.key) {
+            case "Enter":
+                button = document.getElementById("btn_=");
+                button.click();
+                animate(button);
+                break;
+            default: {
+                button.click();
+                animate(button);
+            }    
+        }
+    } catch (err) {
+        return;
+    }
+
+  });
+
+function animate (element) {
+    element.classList.add("clicked");
+    setTimeout (() => {
+        element.classList.remove('clicked');
+      }, 50)
+}
 
 function add (x, y) {
     return x + y;

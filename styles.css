@@ -31,3 +31,9 @@ h2 {
     background-color: rgb(198, 198, 198);
     height: 70px;
 }
+
+.clicked {
+    transform: scale(1.05);
+    border-color: greenyellow;
+    box-shadow: 0 0 1rem greenyellow;
+}
